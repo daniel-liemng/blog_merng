@@ -6,6 +6,19 @@ const typeDefs = gql`
     body: String!
     username: String!
     createdAt: String!
+    comments: [Comment]!
+    likes: [Like]!
+  }
+  type Comment {
+    id: ID!
+    body: String!
+    username: String!
+    createdAt: String!
+  }
+  type Like {
+    id: ID!
+    username: String!
+    createdAt: String!
   }
   type User {
     id: ID!
@@ -30,6 +43,11 @@ const typeDefs = gql`
 
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
+
+    createComment(postId: String!, body: String!): Post!
+    deleteComment(postId: String!, commentId: String!): Post!
+
+    likePost(postId: String!): Post!
   }
 `;
 
